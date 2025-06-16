@@ -198,7 +198,7 @@ class MainFormDsb(OrsAbstractWindow):
         pld = payload.pld_load(filepath)
         self.mesh = pld.dendrite_mesh
         self.spine_skeletons, radii = polyline_utils.get_branch_polylines_by_length(
-            pld.skeleton, min_length=0, max_length=10000, min_nodes=15, max_nodes=5000, radius_threshold=math.inf
+            pld.skeleton, min_length=0, max_length=10000, min_nodes=5, max_nodes=5000, radius_threshold=math.inf
         )
         self.neck_point_slider_values = [0 for _ in range(len(self.spine_skeletons))]
 

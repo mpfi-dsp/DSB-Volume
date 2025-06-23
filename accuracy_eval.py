@@ -5,7 +5,7 @@ from matplotlib.ticker import MaxNLocator
 from scipy.stats import skewtest
 
 GROUND_TRUTH_PATH = "data/cell1_roi5_ground_truth_smoothed.csv"
-DSB_PATH = "data/cell1_roi5_automatic.csv"
+DSB_PATH = "data/cell1_roi5_manual_corrected.csv"
 
 
 def load_data(gt_path: str, dsb_path: str):
@@ -60,7 +60,7 @@ def merge_ground_truth(gt: pd.DataFrame, dsb: pd.DataFrame, max_dist: float = 50
     # Volume differences
     merged["volume_diff"] = merged["Head Volume (μm³)"] - merged["GT_volume"]
     merged["volume_percent_diff"] = (
-        merged["volume_diff"] / merged["Head Volume (μm³)"] * 100
+        merged["volume_diff"] / merged["GT_volume"] * 100
     )
 
     return merged
@@ -136,6 +136,8 @@ def plot_bland_altman(title: str, x: pd.Series, y: pd.Series, labels=None, filen
 def main():
     gt_df, dsb_df = load_data(GROUND_TRUTH_PATH, DSB_PATH)
     merged = merge_ground_truth(gt_df, dsb_df)
+
+    print(f"Detected {len(merged)} DSB spines matching GT spines within threshold.")
 
     automatic = "automatic" in DSB_PATH.lower()
     beheading_type = "Automatic" if automatic else "Semi-Automatic"

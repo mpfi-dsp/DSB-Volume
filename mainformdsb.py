@@ -277,7 +277,7 @@ class MainFormDsb(OrsAbstractWindow):
         except ValueError:
             return
 
-        if value != self.visualizer.currently_visualizing - 1:
+        if value - 1 != self.visualizer.currently_visualizing:
             self.ui.btn_go_to_spine_num.setEnabled(True)
         else:
             self.ui.btn_go_to_spine_num.setEnabled(False)
@@ -294,6 +294,7 @@ class MainFormDsb(OrsAbstractWindow):
         delta = value - current_idx
 
         self.jump_vis(delta)
+        self.ui.btn_go_to_spine_num.setEnabled(False)
 
     @pyqtSlot()
     def on_btn_save_head_clicked(self):

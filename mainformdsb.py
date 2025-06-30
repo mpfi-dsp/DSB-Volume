@@ -2,7 +2,7 @@ import math
 import os
 from typing import Optional
 
-from PyQt6.QtGui import QIntValidator
+from PyQt6.QtGui import QIntValidator, QShortcut, QKeySequence
 
 import ORSModel
 from OrsHelpers.viewLayoutHelper import DisplayLayoutHelper
@@ -52,6 +52,23 @@ class MainFormDsb(OrsAbstractWindow):
         self.neck_pt_3d: Optional[np.ndarray] = None
         self.neck_pt_tangent: Optional[np.ndarray] = None
         self.worker: Optional[PreprocessingWorker] = None
+
+        self.shortcut_neck_point_left = QShortcut(QKeySequence("Q"), self)
+        self.shortcut_neck_point_left.activated.connect(self.move_slider_left)
+
+        self.shortcut_neck_point_right = QShortcut(QKeySequence("E"), self)
+        self.shortcut_neck_point_right.activated.connect(self.move_slider_right)
+
+        self.ui.btn_next_spine.setShortcut("D")
+        self.ui.btn_prev_spine.setShortcut("A")
+        self.ui.btn_save_head.setShortcut("R")
+        self.ui.btn_go_to_spine_num.setShortcut("Enter")
+
+    def move_slider_left(self):
+        self.ui.sldr_neck_point.setValue(self.ui.sldr_neck_point.value() - 10)
+
+    def move_slider_right(self):
+        self.ui.sldr_neck_point.setValue(self.ui.sldr_neck_point.value() + 10)
 
     def update_status_label(self, text: str):
         self.ui.lbl_status.setText(text)

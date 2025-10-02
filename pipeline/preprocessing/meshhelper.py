@@ -12,7 +12,7 @@ def ors_to_trimesh(ors_mesh: FaceVertexMesh) -> trimesh.Trimesh:
     :param ors_mesh: The ORS mesh to convert
     :return: The trimesh mesh
     """
-    vertices = ors_mesh.getVertices(0).getNDArray().reshape(-1, 3) * 1e9  # Convert from nm to m
+    vertices = ors_mesh.getVertices(0).getNDArray().reshape(-1, 3) * 1e9  # Convert from m to nm
     edges = ors_mesh.getEdges(0).getNDArray().reshape(-1, 3)
 
     return trimesh.Trimesh(vertices=vertices, faces=edges)

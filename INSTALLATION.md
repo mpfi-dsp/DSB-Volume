@@ -14,7 +14,7 @@ Head to the [releases page](https://github.com/AlexanderJCS/dsb-plugin/releases/
 
 Extract the zip file containing the source code and open it. Find the `install.bat` file and run it.
 
-> ⚠️ **Warning:** Installing DSB requires the Dragonfly installation to be modified. While unlikely, this may cause instability with the base Dragonfly application. If you want to be cautious, you can backup the `C:\ProgramData\ORS\<YOUR_DRAGONFLY_VERSION>\Anaconda3` folder. Otherwise, any broken behavior will require a reinstallation of Dragonfly.
+> ⚠️ **Warning:** Installing DSB requires the Dragonfly installation to be modified. While unlikely, this may cause instability with the base Dragonfly application. If you want to be cautious, you can backup the `C:\Program Files\Dragonfly\Python_env` folder. Otherwise, any broken behavior will require a reinstallation of Dragonfly.
 
 > ℹ️ **Info:** Windows may give a warning that the installer script is an unrecognized app. This is because the script is not digitally signed and widely distributed. Simply click **More info → Run Anyway**.
 
